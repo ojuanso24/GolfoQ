@@ -155,7 +155,7 @@ function anadirDatos(cuenta) {
     const iconoLiga = document.createElement("img");
     iconoLiga.classList.add("iconoLiga");
     let img = cuenta.tier;
-    if (img === undefined || img === "UNRANKET"){
+    if (img === undefined || img === "Unranket"){
         img = "UNRANKET";
     }
     iconoLiga.src = `ranket_iconos/${img}.png`;
