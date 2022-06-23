@@ -154,7 +154,7 @@ function anadirDatos(cuenta) {
     //
     const iconoLiga = document.createElement("img");
     iconoLiga.classList.add("iconoLiga");
-    iconoLiga.src = `ranket_iconos/${cuenta.tier}.png`;
+    iconoLiga.src = `ranket_iconos/${toUpperCase(cuenta.tier)}.png`;
     divRango.appendChild(iconoLiga);
     //
     divRango.appendChild(rango);
