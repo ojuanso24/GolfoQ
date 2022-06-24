@@ -1,7 +1,7 @@
 let key = "RGAPI-3d6a8ef8-b42e-4e21-ba1f-31f39483899d";
 let LOLVersion = '12.11.1';
 
-let nombreUsuarios = ["ojuanso24", "PaqueteDeCamel", "GodFuriss", "ChiPii13", "Felix7246", "juansa14", "RMGONZ"]
+let nombreUsuarios = ["juansa14" ,"comeoncounterme", "Matujinh0", "G2 Aoi Todo", "EDQNQD", "JHíníÙS"]
 
 let usuarios = new Map();
 
@@ -97,9 +97,6 @@ async function iniarPagina() {
         }
         await datosPuntos(cuenta);
         await datosIdTresCampeones(cuenta);
-        console.log(cuenta.campeon1);
-        console.log(cuenta.campeon2);
-        console.log(cuenta.campeon3);
     }
 
     insertarUsuariosHTML();
