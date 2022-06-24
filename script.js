@@ -5,6 +5,8 @@ let nombreUsuarios = ["ojuanso24", "PaqueteDeCamel", "GodFuriss", "ChiPii13", "F
 
 let usuarios = new Map();
 
+let champions = new Map();
+
 let ordenJugadorPorLiga = new Map();
 ordenJugadorPorLiga.set("CHALLENGER", 0);
 ordenJugadorPorLiga.set("GRAND MASTER", 1);
@@ -56,6 +58,7 @@ let ordenJugadore = [
 iniarPagina();
 
 async function iniarPagina() {
+    datosCampeones();
     for (let index = 0; index < nombreUsuarios.length; index++) {
         let data = await datosCuenta(nombreUsuarios[index]);
         let cuenta = new Cuenta(data.id, data.accountId, data.puuid, data.name, data.profileIconId, data.revisionDate, data.summonerLevel);
@@ -92,9 +95,33 @@ async function iniarPagina() {
                 cuenta.wins = datos[0].wins;
             }
         }
-        datosPuntos(cuenta);
+        await datosPuntos(cuenta);
+        await datosIdTresCampeones(cuenta);
+        console.log(cuenta.campeon1);
+        console.log(cuenta.campeon2);
+        console.log(cuenta.campeon3);
     }
+
     insertarUsuariosHTML();
+}
+
+
+async function datosIdTresCampeones(cuenta){
+    let datosCampeones = await datosMaestria(cuenta);
+    console.log();
+    cuenta.campeon1 = champions.get(`${datosCampeones[0].championId}`);
+    cuenta.campeon2 = champions.get(`${datosCampeones[1].championId}`);
+    cuenta.campeon3 = champions.get(`${datosCampeones[2].championId}`);
+}
+
+async function datosMaestria(cuenta){
+    try {
+        let resPost = await fetch(`https://euw1.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/${cuenta.id}?api_key=${key}`);
+        let post = await resPost.json();
+        return post;
+    } catch (error) {
+        console.log(error);
+    }
 }
 
 
@@ -180,19 +207,19 @@ function anadirDatos(cuenta) {
     const campeon1 = document.createElement("img");
     campeon1.classList.add("campeon1");
     campeon1.classList.add("icono");
-    campeon1.src = "champion/Varus.png";
+    campeon1.src = `champion/${cuenta.campeon1}.png`;
     divDerecha.appendChild(campeon1);
 
     const campeon2 = document.createElement("img");
     campeon2.classList.add("campeon2");
     campeon2.classList.add("icono");
-    campeon2.src ="champion/Skarner.png";
+    campeon2.src = `champion/${cuenta.campeon2}.png`;
     divDerecha.appendChild(campeon2);
 
     const campeon3 = document.createElement("img");
     campeon3.classList.add("camepon1");
     campeon3.classList.add("icono");
-    campeon3.src = "champion/Aatrox.png";
+    campeon3.src = `champion/${cuenta.campeon3}.png`;
     divDerecha.appendChild(campeon3);
     // 
     card.appendChild(divIzquiera);
@@ -200,6 +227,20 @@ function anadirDatos(cuenta) {
     card.appendChild(divDerecha);
 
     document.getElementById('main').appendChild(card);
+}
+
+async function datosCampeones() {
+    try {
+        let resPost = await fetch(`./campeones.json`);
+        let post = await resPost.json();
+        if (post.hasOwnProperty('data')) {
+            for (var clave in post.data){
+                champions.set(post.data[clave].key, post.data[clave].name)
+            }
+        }
+    } catch (error) {
+        console.log(error);
+    }
 }
 
 async function datosCuenta(nombreCuenta) {
@@ -272,6 +313,9 @@ class Cuenta {
     rank;
     wins;
     imgLiga;
+    campeon1;
+    campeon2;
+    campeon3;
 
     constructor(id, accountId, puuid, name, profileIconId, revisionDate, summonerLevel) {
         this.id = id;
