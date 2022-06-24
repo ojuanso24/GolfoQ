@@ -59,6 +59,11 @@ body{
     height:  10rem;
     border-radius: 20%;
     margin: 1rem;
+    border: 0.5rem solid #f28f3b;
+}
+
+.campeon{
+    border-color: #C8553D;
 }
 
 .divRango{

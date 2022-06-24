@@ -205,19 +205,19 @@ function anadirDatos(cuenta) {
     //  
 
     const campeon1 = document.createElement("img");
-    campeon1.classList.add("campeon1");
+    campeon1.classList.add("campeon");
     campeon1.classList.add("icono");
     campeon1.src = `champion/${cuenta.campeon1}.png`;
     divDerecha.appendChild(campeon1);
 
     const campeon2 = document.createElement("img");
-    campeon2.classList.add("campeon2");
+    campeon2.classList.add("campeon");
     campeon2.classList.add("icono");
     campeon2.src = `champion/${cuenta.campeon2}.png`;
     divDerecha.appendChild(campeon2);
 
     const campeon3 = document.createElement("img");
-    campeon3.classList.add("camepon1");
+    campeon3.classList.add("campeon");
     campeon3.classList.add("icono");
     campeon3.src = `champion/${cuenta.campeon3}.png`;
     divDerecha.appendChild(campeon3);
