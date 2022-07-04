@@ -1,7 +1,7 @@
 let key = "RGAPI-fa75fa78-0d2f-48bc-84db-a69b1fbf19e9";
 let LOLVersion = '12.11.1';
 
-let nombreUsuarios = ["juansa14" ,"comeoncounterme", "Matujinh0", "AtunConMayonesa", "EDQNQD", "JHíníÙS", "tqlmhzwnq", ""]
+let nombreUsuarios = ["juansa14" ,"comeoncounterme", "Matujinh0", "AtunConMayonesa", "EDQNQD", "JHíníÙS", "tqlmhzwnq", "KataGriffa2"]
 
 let usuarios = new Map();
 
