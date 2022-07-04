@@ -1,4 +1,4 @@
-let key = "RGAPI-fa75fa78-0d2f-48bc-84db-a69b1fbf19e9";
+let key = "RGAPI-b8045ff2-03af-481f-9219-e05539d8d7c2";
 let LOLVersion = '12.11.1';
 
 let nombreUsuarios = ["juansa14" ,"comeoncounterme", "Matujinh0", "AtunConMayonesa", "EDQNQD", "JHíníÙS", "tqlmhzwnq", "KataGriffa2"]
