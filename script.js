@@ -1,4 +1,4 @@
-let key = "RGAPI-4507e908-fc86-4feb-9aed-072f9bb5d7ba";
+let key = "RGAPI-c17d8990-fe69-49d8-9a49-4df78d41669b";
 let LOLVersion = '12.11.1';
 
 let nombreUsuarios = ["comeoncounterme", "Matujinh0", "AtunConMayonesa", "EDQNQD", "JHíníÙS", "tqlmhzwnq", "KataGriffa2"]
@@ -42,7 +42,7 @@ ordenJugadorPorLiga.set("IRON II", 24);
 ordenJugadorPorLiga.set("IRON III", 25);
 ordenJugadorPorLiga.set("IRON IV", 26);
 
-ordenJugadorPorLiga.set("UNRANKET", 27);
+ordenJugadorPorLiga.set("UNRANKED", 27);
 ordenJugadorPorLiga.set(undefined, 28);
 
 let ordenJugadore = [
@@ -69,7 +69,7 @@ async function iniarPagina() {
                 cuenta.leaguePoints = 0;
                 cuenta.losses =0;
                 cuenta.rank = "";
-                cuenta.tier = "Unranket";
+                cuenta.tier = "Unranked";
                 cuenta.wins = 0;
         } else if (Object.keys(datos).length === 1 && datos[0].queueType === "RANKED_SOLO_5x5") {
             cuenta.summonerId = datos[0].summonerId;
@@ -95,8 +95,8 @@ async function iniarPagina() {
                 cuenta.wins = datos[0].wins;
             }
         }
-        await datosPuntos(cuenta);
-        await datosIdTresCampeones(cuenta);
+        datosIdTresCampeones(cuenta);
+        datosPuntos(cuenta);
     }
 
     insertarUsuariosHTML();
@@ -145,6 +145,7 @@ function anadirDatos(cuenta) {
 
     const icono = document.createElement("img");
     icono.classList.add("icono");
+
     icono.src = cuenta.profileIconId
 
     divIcono.appendChild(icono);
@@ -179,8 +180,8 @@ function anadirDatos(cuenta) {
     const iconoLiga = document.createElement("img");
     iconoLiga.classList.add("iconoLiga");
     let img = cuenta.tier;
-    if (img === undefined || img === "Unranket"){
-        img = "UNRANKET";
+    if (img === undefined || img === "Unranked"){
+        img = "UNRANKED";
     }
     iconoLiga.src = `ranket_iconos/${img}.png`;
     divRango.appendChild(iconoLiga);
@@ -260,7 +261,7 @@ async function datosRanket(cuenta) {
 
 function datosPuntos(cuenta) {
     let posicionOrdenJugadore;
-    if (cuenta.tier === "Unranket") {
+    if (cuenta.tier === "Unranked") {
         posicionOrdenJugadore = 28;
     } else if (cuenta.tier === "CHALLENGER") {
         console.log('entrada 2');
@@ -319,8 +320,14 @@ class Cuenta {
         this.accountId = accountId;
         this.puuid = puuid;
         this.name = name;
-        this.profileIconId = `https://ddragon.leagueoflegends.com/cdn/12.11.1/img/profileicon/${profileIconId}.png`;
+        if (name==="JHíníÙS"){
+            this.profileIconId = `contenido/undefined.png`;
+        }else{
+            this.profileIconId = `https://ddragon.leagueoflegends.com/cdn/12.11.1/img/profileicon/${profileIconId}.png`;
+        }
+        
         this.revisionDate = revisionDate;
         this.summonerLevel = summonerLevel;
+        console.log(this);
     }
 }
